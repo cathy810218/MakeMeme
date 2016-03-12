@@ -9,7 +9,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ImagePickerProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MakeMeme" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -57,6 +57,12 @@
                                             <action selector="pickImageBtnPressed:" destination="BYZ-38-t0r" id="KCw-JX-aNV"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9cu-05-i0W"/>
+                                    <barButtonItem systemItem="camera" id="VgR-kS-yDo">
+                                        <connections>
+                                            <action selector="cameraButtonPressed:" destination="BYZ-38-t0r" id="ryH-To-539"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -88,6 +94,7 @@
                     <connections>
                         <outlet property="bottomTextfield" destination="Y6d-ud-tQ5" id="uKT-Wh-rqg"/>
                         <outlet property="bottomToolbar" destination="cmy-lf-9D8" id="mdd-nw-VLK"/>
+                        <outlet property="cameraButton" destination="VgR-kS-yDo" id="oKJ-EP-wq7"/>
                         <outlet property="imageView" destination="Bek-ri-cQr" id="bdo-4k-rMA"/>
                         <outlet property="shareButton" destination="q7p-n0-f2C" id="qh2-Dv-ald"/>
                         <outlet property="topTextfield" destination="FFC-50-wJS" id="O38-oZ-w1w"/>

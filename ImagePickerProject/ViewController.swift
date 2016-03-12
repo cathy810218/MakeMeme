@@ -16,15 +16,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   @IBOutlet weak var topToolbar: UIToolbar!
   @IBOutlet weak var bottomToolbar: UIToolbar!
   @IBOutlet weak var shareButton: UIBarButtonItem!
+  @IBOutlet weak var cameraButton: UIBarButtonItem!
   
-  let selectionAlert = UIAlertController(title: "Choose your photo", message: "from the gallery or camera", preferredStyle: UIAlertControllerStyle.ActionSheet)
+
   let pickerView = UIImagePickerController()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+
     shareButton.enabled = false
+    cameraButton.enabled = false
     imageView.backgroundColor = UIColor.lightGrayColor()
+    pickerView.delegate = self
     
     // TextField Attributes
     let memeTextfieldAttributes = [
@@ -42,25 +45,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     topTextfield.delegate = self
     bottomTextfield.delegate = self
     
-    // AlertView actions
-    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-    let galleryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      self.showGallery()
-    }
-    let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      self.pickerView.sourceType = UIImagePickerControllerSourceType.Camera
-      self.pickerView.cameraCaptureMode = .Photo
-      self.presentViewController(self.pickerView, animated: true, completion: nil)
-    }
-    
-    // Add alert actions
-    selectionAlert.addAction(galleryAction)
-    // check if the camera sourse is available
     if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-      selectionAlert.addAction(cameraAction)
+      cameraButton.enabled = true
     }
-    selectionAlert.addAction(cancelAction)
     
+    // tap gesture to dismiess keyboard when user taps anywhere else
+    let tap : UITapGestureRecognizer
+    tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
+    self.view.addGestureRecognizer(tap)
+    
+  }
+  
+  func dismissKeyboard() {
+    self.view.endEditing(true)
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -74,19 +71,32 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   
   @IBAction func pickImageBtnPressed(sender: AnyObject) {
-    
-    selectionAlert.modalPresentationStyle = UIModalPresentationStyle.Popover
-    if let popover = selectionAlert.popoverPresentationController {
-      popover.sourceView = view
-    }
-    self.presentViewController(selectionAlert, animated: true, completion: nil)
-    
+    self.pickerView.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+    self.presentViewController(pickerView, animated: true, completion: nil)
   }
   
-  func showGallery() {
-    pickerView.delegate = self
-    pickerView.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-    self.presentViewController(pickerView, animated: true, completion: nil)
+  @IBAction func cameraButtonPressed(sender: AnyObject) {
+    self.pickerView.sourceType = UIImagePickerControllerSourceType.Camera
+    self.pickerView.cameraCaptureMode = .Photo
+    self.presentViewController(self.pickerView, animated: true, completion: nil)
+  }
+  
+  @IBAction func shareMemePressed(sender: AnyObject) {
+    let memedImage = generateMemedImage()
+    let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+    activityVC.completionWithItemsHandler = { activity, success, items, error in
+      if success {
+        self.save(memedImage)
+      }
+    }
+    presentViewController(activityVC, animated: true, completion: nil)
+  }
+  
+  @IBAction func cancelButtonPressed(sender: AnyObject) {
+    self.imageView.image = nil
+    self.imageView.backgroundColor = UIColor.lightGrayColor()
+    self.topTextfield.text = "TOP"
+    self.bottomTextfield.text = "BOTTOM"
   }
   
   // MARK: - NSNotification
@@ -144,8 +154,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   func generateMemedImage() -> UIImage {
     
     // Hide the toolbar
-    topToolbar.hidden = true
-    bottomToolbar.hidden = true
+    self.topToolbar.hidden = true
+    self.bottomToolbar.hidden = true
     
     // Render view to an image
     UIGraphicsBeginImageContext(self.view.frame.size)
@@ -154,37 +164,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     UIGraphicsEndImageContext()
         
     // Set the toolbar
-    topToolbar.hidden = false
-    bottomToolbar.hidden = false
+    self.topToolbar.hidden = false
+    self.bottomToolbar.hidden = false
     
     return memedImage
-  }
-  
-  @IBAction func shareMemePressed(sender: AnyObject) {
-    let memedImage = generateMemedImage()
-    let activityVC = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-    activityVC.completionWithItemsHandler = { activity, success, items, error in
-      if success {
-        self.save(memedImage)
-      }
-    }
-    presentViewController(activityVC, animated: true, completion: nil)
-  }
-  
-  @IBAction func cancelButtonPressed(sender: AnyObject) {
-    imageView.image = nil
-    imageView.backgroundColor = UIColor.lightGrayColor()
-    topTextfield.text = "TOP"
-    bottomTextfield.text = "BOTTOM"
-    
   }
   
   // MARK: - UIImagePickerViewDelegate
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
     if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-      imageView.image = image
-      shareButton.enabled = true
-      imageView.backgroundColor = UIColor.clearColor()
+      self.imageView.image = image
+      self.shareButton.enabled = true
+      self.imageView.backgroundColor = UIColor.clearColor()
     }
     dismissViewControllerAnimated(true, completion: nil)
   }
@@ -203,6 +194,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       subscribeToKeyboardNotifications()
     }
   }
-  
+
 }
 
