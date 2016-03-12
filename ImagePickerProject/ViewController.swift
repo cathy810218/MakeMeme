@@ -60,10 +60,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     self.view.endEditing(true)
   }
   
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-  }
-  
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     unsubscribeFromKeyboardNotifications()
@@ -144,7 +140,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   // MARK: - Save Memed image
   func save(memedImage: UIImage) {
-    
     let meme = Meme(topText: topTextfield.text!,
       botText: bottomTextfield.text!,
       originalImage: imageView.image!,
