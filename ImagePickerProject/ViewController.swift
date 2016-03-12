@@ -24,10 +24,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    shareButton.enabled = false
-    cameraButton.enabled = false
-    imageView.backgroundColor = UIColor.lightGrayColor()
-    pickerView.delegate = self
+    self.shareButton.enabled = false
+    self.cameraButton.enabled = false
+    self.imageView.backgroundColor = UIColor.lightGrayColor()
+    self.pickerView.delegate = self
     
     // TextField Attributes
     let memeTextfieldAttributes = [

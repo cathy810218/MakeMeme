@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -23,13 +22,13 @@
                                 <color key="backgroundColor" red="0.65490196079999996" green="0.67450980390000004" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="FFC-50-wJS">
-                                <rect key="frame" x="0.0" y="79" width="600" height="15"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="15"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Y6d-ud-tQ5">
-                                <rect key="frame" x="0.0" y="506" width="600" height="17"/>
+                                <rect key="frame" x="0.0" y="539" width="600" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
@@ -70,24 +69,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Bek-ri-cQr" secondAttribute="trailing" constant="-20" id="0rv-Ct-oEm"/>
-                            <constraint firstItem="ghq-pu-b9N" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="1dt-xc-nuX"/>
-                            <constraint firstItem="FFC-50-wJS" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="2hT-QV-g2l"/>
-                            <constraint firstItem="ghq-pu-b9N" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="8Bx-hl-Mea"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cmy-lf-9D8" secondAttribute="bottom" id="DKk-xm-OmR"/>
-                            <constraint firstItem="FFC-50-wJS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GoG-1X-vhv"/>
-                            <constraint firstItem="Y6d-ud-tQ5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LlT-hW-1lU"/>
-                            <constraint firstItem="Bek-ri-cQr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="TS4-tE-vsk"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Bek-ri-cQr" secondAttribute="bottom" constant="44" id="TxI-go-DJr"/>
-                            <constraint firstItem="Bek-ri-cQr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UAT-8d-wjQ"/>
-                            <constraint firstItem="cmy-lf-9D8" firstAttribute="leading" secondItem="Bek-ri-cQr" secondAttribute="leading" id="ZYx-jh-h1o"/>
-                            <constraint firstItem="Bek-ri-cQr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="aHe-sH-reP"/>
-                            <constraint firstItem="Y6d-ud-tQ5" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="dDo-pc-6jk"/>
-                            <constraint firstItem="cmy-lf-9D8" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="eWd-aV-wVc"/>
-                            <constraint firstItem="Y6d-ud-tQ5" firstAttribute="top" secondItem="Bek-ri-cQr" secondAttribute="bottom" constant="-50" id="k4b-9V-lcl"/>
-                            <constraint firstItem="Bek-ri-cQr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kxa-CP-Ac2"/>
-                            <constraint firstItem="Bek-ri-cQr" firstAttribute="top" secondItem="FFC-50-wJS" secondAttribute="bottom" constant="-50" id="uRW-re-9wB"/>
-                            <constraint firstItem="ghq-pu-b9N" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="znJ-8P-qYA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Bek-ri-cQr" secondAttribute="bottom" constant="44" id="3GN-Zi-VfJ"/>
+                            <constraint firstItem="cmy-lf-9D8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5VU-rI-cXJ"/>
+                            <constraint firstItem="ghq-pu-b9N" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6ZG-0l-cLc"/>
+                            <constraint firstItem="FFC-50-wJS" firstAttribute="centerX" secondItem="Bek-ri-cQr" secondAttribute="centerX" id="7DO-xy-SU4"/>
+                            <constraint firstItem="Y6d-ud-tQ5" firstAttribute="width" secondItem="Bek-ri-cQr" secondAttribute="width" id="8Yv-I4-4wF"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cmy-lf-9D8" secondAttribute="bottom" id="E2Z-VD-vT2"/>
+                            <constraint firstItem="ghq-pu-b9N" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ELx-LA-QNt"/>
+                            <constraint firstItem="ghq-pu-b9N" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="EqO-uy-A49"/>
+                            <constraint firstItem="cmy-lf-9D8" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Rhh-f4-Sgg"/>
+                            <constraint firstItem="Bek-ri-cQr" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="d2X-pq-4zy"/>
+                            <constraint firstItem="FFC-50-wJS" firstAttribute="top" secondItem="Bek-ri-cQr" secondAttribute="top" id="mvd-k6-VJU"/>
+                            <constraint firstItem="Y6d-ud-tQ5" firstAttribute="centerX" secondItem="Bek-ri-cQr" secondAttribute="centerX" id="qlu-pB-eYg"/>
+                            <constraint firstItem="Bek-ri-cQr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="rEU-7Q-s87"/>
+                            <constraint firstItem="Y6d-ud-tQ5" firstAttribute="bottom" secondItem="Bek-ri-cQr" secondAttribute="bottom" id="t12-jG-OOh"/>
+                            <constraint firstItem="FFC-50-wJS" firstAttribute="width" secondItem="Bek-ri-cQr" secondAttribute="width" id="v1j-xV-V2Q"/>
+                            <constraint firstItem="Bek-ri-cQr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wMf-Ir-f5K"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
