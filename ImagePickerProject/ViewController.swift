@@ -58,11 +58,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   func dismissKeyboard() {
     self.view.endEditing(true)
+    unsubscribeFromKeyboardNotifications()
+
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     unsubscribeFromKeyboardNotifications()
+
   }
   
   
@@ -93,6 +96,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     self.imageView.backgroundColor = UIColor.lightGrayColor()
     self.topTextfield.text = "TOP"
     self.bottomTextfield.text = "BOTTOM"
+    self.dismissViewControllerAnimated(true, completion: nil)
   }
   
   // MARK: - NSNotification
@@ -144,6 +148,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       botText: bottomTextfield.text!,
       originalImage: imageView.image!,
       memedImage : memedImage)
+    
+    // add it to the memes array in AppDelegate
+    let object = UIApplication.sharedApplication().delegate
+    let appDelegate = object as! AppDelegate
+    appDelegate.memes.append(meme)
   }
   
   func generateMemedImage() -> UIImage {
@@ -178,12 +187,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // MARK: - UITextFieldDelegate
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     textField.resignFirstResponder()
+    unsubscribeFromKeyboardNotifications()
+
     return true
   }
   
   func textFieldDidBeginEditing(textField: UITextField) {
     // clean up the default text
-    textField.text = ""
+    if (textField == topTextfield && topTextfield.text == "TOP") {
+      topTextfield.text = ""
+    }
+    if (textField == bottomTextfield && bottomTextfield.text == "BOTTOM") {
+      bottomTextfield.text = ""
+    }
     if textField.isEqual(bottomTextfield) {
       // only subscribe when clicking the bottom textfield
       subscribeToKeyboardNotifications()
