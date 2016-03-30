@@ -86,6 +86,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     activityVC.completionWithItemsHandler = { activity, success, items, error in
       if success {
         self.save(memedImage)
+        self.dismissViewControllerAnimated(true, completion: nil)
       }
     }
     presentViewController(activityVC, animated: true, completion: nil)

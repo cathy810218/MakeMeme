@@ -47,8 +47,11 @@ class SentMemeTableViewController: UIViewController, UITableViewDelegate, UITabl
   }
   
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    //    TODO: display detail view controller
-    
+
+    let detailVC = self.storyboard!.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+    detailVC.meme = self.memes[indexPath.row]
+    self.navigationController!.pushViewController(detailVC, animated: true)
+
   }
   
 }

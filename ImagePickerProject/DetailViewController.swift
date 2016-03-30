@@ -10,4 +10,15 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+  var meme : Meme!
+  
+  @IBOutlet weak var detailImageView: UIImageView!
+
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.detailImageView.sizeToFit()
+    self.detailImageView.image = meme.memedImage
+  }
+  
 }
