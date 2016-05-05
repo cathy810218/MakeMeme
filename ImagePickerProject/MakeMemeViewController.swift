@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
+class MakeMemeViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
   
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var topTextfield: UITextField!
@@ -24,10 +24,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.shareButton.enabled = false
-    self.cameraButton.enabled = false
-    self.imageView.backgroundColor = UIColor.lightGrayColor()
-    self.pickerView.delegate = self
+    shareButton.enabled = false
+    cameraButton.enabled = false
+    imageView.backgroundColor = UIColor.lightGrayColor()
+    pickerView.delegate = self
     
     // TextField Attributes
     let memeTextfieldAttributes = [
@@ -51,7 +51,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     // tap gesture to dismiess keyboard when user taps anywhere else
     let tap : UITapGestureRecognizer
-    tap = UITapGestureRecognizer.init(target: self, action: "dismissKeyboard")
+    tap = UITapGestureRecognizer.init(target: self, action: #selector(MakeMemeViewController.dismissKeyboard))
     self.view.addGestureRecognizer(tap)
     
   }
@@ -70,14 +70,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   
   
   @IBAction func pickImageBtnPressed(sender: AnyObject) {
-    self.pickerView.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-    self.presentViewController(pickerView, animated: true, completion: nil)
+    pickerView.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+    presentViewController(pickerView, animated: true, completion: nil)
   }
   
   @IBAction func cameraButtonPressed(sender: AnyObject) {
-    self.pickerView.sourceType = UIImagePickerControllerSourceType.Camera
-    self.pickerView.cameraCaptureMode = .Photo
-    self.presentViewController(self.pickerView, animated: true, completion: nil)
+    pickerView.sourceType = UIImagePickerControllerSourceType.Camera
+    pickerView.cameraCaptureMode = .Photo
+    presentViewController(pickerView, animated: true, completion: nil)
   }
   
   @IBAction func shareMemePressed(sender: AnyObject) {
@@ -93,16 +93,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   }
   
   @IBAction func cancelButtonPressed(sender: AnyObject) {
-    self.imageView.image = nil
-    self.imageView.backgroundColor = UIColor.lightGrayColor()
-    self.topTextfield.text = "TOP"
-    self.bottomTextfield.text = "BOTTOM"
-    self.dismissViewControllerAnimated(true, completion: nil)
+    imageView.image = nil
+    imageView.backgroundColor = UIColor.lightGrayColor()
+    topTextfield.text = "TOP"
+    bottomTextfield.text = "BOTTOM"
+    dismissViewControllerAnimated(true, completion: nil)
   }
   
   // MARK: - NSNotification
   func keyboardWillShow(notification: NSNotification) {
-    self.view.frame.origin.y -= getKeyboardHeight(notification)
+    // only move the view up if the bottom textfield is being edited
+    if self.bottomTextfield.isFirstResponder() {
+        self.view.frame.origin.y -= getKeyboardHeight(notification)
+    }
   }
   
   func keyboardWillHide(notification: NSNotification) {
@@ -112,12 +115,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   func subscribeToKeyboardNotifications() {
     
     NSNotificationCenter.defaultCenter().addObserver(self,
-      selector: "keyboardWillShow:",
+      selector: #selector(MakeMemeViewController.keyboardWillShow(_:)),
       name: UIKeyboardWillShowNotification,
       object: nil)
     
     NSNotificationCenter.defaultCenter().addObserver(self,
-      selector: "keyboardWillHide:",
+      selector: #selector(MakeMemeViewController.keyboardWillHide(_:)),
       name: UIKeyboardWillHideNotification,
       object: nil)
     
@@ -159,8 +162,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   func generateMemedImage() -> UIImage {
     
     // Hide the toolbar
-    self.topToolbar.hidden = true
-    self.bottomToolbar.hidden = true
+    topToolbar.hidden = true
+    bottomToolbar.hidden = true
     
     // Render view to an image
     UIGraphicsBeginImageContext(self.view.frame.size)
@@ -169,8 +172,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     UIGraphicsEndImageContext()
         
     // Set the toolbar
-    self.topToolbar.hidden = false
-    self.bottomToolbar.hidden = false
+    topToolbar.hidden = false
+    bottomToolbar.hidden = false
     
     return memedImage
   }
@@ -178,9 +181,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
   // MARK: - UIImagePickerViewDelegate
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
     if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-      self.imageView.image = image
-      self.shareButton.enabled = true
-      self.imageView.backgroundColor = UIColor.clearColor()
+      imageView.image = image
+      shareButton.enabled = true
+      imageView.backgroundColor = UIColor.clearColor()
     }
     dismissViewControllerAnimated(true, completion: nil)
   }
