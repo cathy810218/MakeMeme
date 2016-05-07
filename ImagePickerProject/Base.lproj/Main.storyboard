@@ -48,7 +48,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="zf3-1C-or9" id="pPa-Wt-qi5"/>
-                        <segue destination="Ypi-8A-XVp" kind="show" identifier="showDetail" id="nBY-E9-u0e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bei-hR-bGH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -109,15 +108,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="itB-Ph-EzI">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="itB-Ph-EzI" secondAttribute="trailing" constant="-20" id="Qbq-7B-nHe"/>
-                            <constraint firstItem="A4U-Gx-QcD" firstAttribute="top" secondItem="itB-Ph-EzI" secondAttribute="bottom" id="UHb-Cy-PfP"/>
-                            <constraint firstItem="itB-Ph-EzI" firstAttribute="leading" secondItem="fK4-Sm-kQB" secondAttribute="leadingMargin" constant="-20" id="eYI-47-TAn"/>
-                            <constraint firstItem="itB-Ph-EzI" firstAttribute="top" secondItem="yVQ-ZY-kb0" secondAttribute="bottom" id="nCP-qL-n4B"/>
+                            <constraint firstItem="itB-Ph-EzI" firstAttribute="bottom" secondItem="A4U-Gx-QcD" secondAttribute="top" id="043-hk-ojF"/>
+                            <constraint firstItem="itB-Ph-EzI" firstAttribute="top" secondItem="yVQ-ZY-kb0" secondAttribute="bottom" constant="-20" id="MGM-cM-l4l"/>
+                            <constraint firstAttribute="trailing" secondItem="itB-Ph-EzI" secondAttribute="trailing" id="eek-ot-B5M"/>
+                            <constraint firstItem="itB-Ph-EzI" firstAttribute="leading" secondItem="fK4-Sm-kQB" secondAttribute="leading" id="ejG-9d-hud"/>
                         </constraints>
                     </view>
                     <connections>
@@ -126,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lOl-ow-Ynk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1038" y="233"/>
+            <point key="canvasLocation" x="1224" y="149"/>
         </scene>
         <!--Item-->
         <scene sceneID="tne-QT-ifu">

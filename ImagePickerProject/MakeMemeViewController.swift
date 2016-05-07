@@ -17,7 +17,6 @@ class MakeMemeViewController: UIViewController, UINavigationControllerDelegate, 
   @IBOutlet weak var bottomToolbar: UIToolbar!
   @IBOutlet weak var shareButton: UIBarButtonItem!
   @IBOutlet weak var cameraButton: UIBarButtonItem!
-  
 
   let pickerView = UIImagePickerController()
   
@@ -59,15 +58,12 @@ class MakeMemeViewController: UIViewController, UINavigationControllerDelegate, 
   func dismissKeyboard() {
     self.view.endEditing(true)
     unsubscribeFromKeyboardNotifications()
-
   }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
     unsubscribeFromKeyboardNotifications()
-
   }
-  
   
   @IBAction func pickImageBtnPressed(sender: AnyObject) {
     pickerView.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
@@ -103,7 +99,7 @@ class MakeMemeViewController: UIViewController, UINavigationControllerDelegate, 
   // MARK: - NSNotification
   func keyboardWillShow(notification: NSNotification) {
     // only move the view up if the bottom textfield is being edited
-    if self.bottomTextfield.isFirstResponder() {
+    if bottomTextfield.isFirstResponder() {
         self.view.frame.origin.y -= getKeyboardHeight(notification)
     }
   }
@@ -123,7 +119,6 @@ class MakeMemeViewController: UIViewController, UINavigationControllerDelegate, 
       selector: #selector(MakeMemeViewController.keyboardWillHide(_:)),
       name: UIKeyboardWillHideNotification,
       object: nil)
-    
   }
   
   func unsubscribeFromKeyboardNotifications() {
@@ -167,7 +162,7 @@ class MakeMemeViewController: UIViewController, UINavigationControllerDelegate, 
     
     // Render view to an image
     UIGraphicsBeginImageContext(self.view.frame.size)
-    view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+    self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
     let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
         

@@ -17,10 +17,9 @@ class DetailViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.detailImageView.isAccessibilityElement = true
-    self.detailImageView.sizeToFit()
-    self.detailImageView.contentMode = UIViewContentMode.ScaleAspectFit
-    self.detailImageView.image = meme.memedImage
+    detailImageView.sizeToFit()
+    detailImageView.contentMode = UIViewContentMode.ScaleAspectFit
+    detailImageView.image = meme.memedImage
   }
   
 }
