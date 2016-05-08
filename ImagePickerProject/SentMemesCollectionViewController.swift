@@ -16,6 +16,10 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
   override func viewDidLoad() {
     super.viewDidLoad()
+    collectionView?.registerNib(UINib(nibName: "CollectionViewCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "CollectionViewCell")
+    collectionView?.dataSource = self
+    collectionView?.delegate = self
+
   }
   
   override func viewDidAppear(animated: Bool) {
